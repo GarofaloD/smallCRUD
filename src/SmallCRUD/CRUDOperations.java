@@ -1,7 +1,16 @@
 package SmallCRUD;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 public class CRUDOperations {
 
+    private final String classForName = "com.mysql.cj.jdbc.Driver";
+    private final String connectionURL = "jdbc:mysql://localhost:3306/javabackend";
+    private final String connectionUserName = "root";
+    private final String connectionPWD = "IosDev2021!";
+
+    public static ArrayList<Employee> employeeArrayList = new ArrayList<>();
 
     public static void readAll() {
     }
@@ -18,7 +27,11 @@ public class CRUDOperations {
 
     }
 
-    public static void updateSalaryIndividual(){
+    public static void updateSalaryByPercentage(){
+
+    }
+
+    public static void updateSalaryCustom(){
 
     }
 
@@ -26,6 +39,14 @@ public class CRUDOperations {
 
     }
 
+
+    public static void searchEmployee(){
+
+    }
+
+    public static void employeeOnFile(){
+
+    }
 
 
 }

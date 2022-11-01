@@ -1,11 +1,11 @@
 package SmallCRUD;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
 
     static Scanner scanner = new Scanner(System.in);
+
 
     public static void main(String[] args) {
 
@@ -21,9 +21,9 @@ public class Main {
             choice1 = scanner.nextInt();
 
             switch (choice1){
-                case 1 -> insertEmployeeMenu();
+                case 1 -> processInsertEmployee();
                 case 2 -> processFetchEmployees();
-                case 3 -> processUpdateSalaries();
+                case 3 -> processUpdateEmployee();
                 case 4 -> processDeleteEmployee();
                 case 5 -> quitProgram = true;
                 default -> System.out.println("Wrong selection. Make sure you select an option from the menu");
@@ -49,7 +49,7 @@ public class Main {
         System.out.println("5. Exit");
     }
 
-    public static void insertEmployeeMenu(){
+    public static void processInsertEmployee(){
 
         System.out.println("=====Insert Employee Menu=====");
 
@@ -68,42 +68,82 @@ public class Main {
         System.out.println("New Salary Designation");
         String empDesignation = scanner.next();
 
+        System.out.println("Employee information:");
+        System.out.println("Employee Id: " + empId);
+        System.out.println("Employee Name: " + empName);
+        System.out.println("Employee Age: " + empAge);
+        System.out.println("Employee Salary: " + empSalary);
+        System.out.println("Employee Designation: " + empDesignation);
+        System.out.println("Are you sure you want to add the employee? (Y/N)");
+        String employeeInsertChoice = scanner.next();
 
+        if(employeeInsertChoice.equalsIgnoreCase("y")){
+            CRUDOperations.insert();
+            System.out.println("Employee Created");
+        } else {
+            System.out.println("Closing feature");
+        }
     }
 
     public static void processFetchEmployees(){
 
-        int choiceFetch;
-        boolean quitToMain = false;
+        boolean quitFetchToMain = false;
 
-        while (!quitToMain){
+        while (!quitFetchToMain){
             System.out.println("======Show Employees=======");
             System.out.println("select your option:");
             System.out.println("1. Show all Employees");
             System.out.println("2. Search employee by employee ID");
             System.out.println("3. Exit to main menu");
 
-            choiceFetch = scanner.nextInt();
+            int choiceFetch = scanner.nextInt();
 
             switch (choiceFetch){
                 case 1 -> CRUDOperations.readAll();
                 case 2 -> CRUDOperations.readOne();
-                case 3 -> quitToMain = true;
+                case 3 -> quitFetchToMain = true;
                 default -> System.out.println("Wrong selection. Make sure you select an option from the menu");
             }
         }
 
-
-
-
-
     }
 
-    public static void processUpdateSalaries(){
+    public static void processUpdateEmployee(){
+
+        boolean quitUpdateToMain = false;
+
+        while (!quitUpdateToMain){
+            System.out.println("======Update Employees=======");
+            System.out.println("select your option:");
+            System.out.println("1. Update Designation");
+            System.out.println("2. Update Salary (by percentage)");
+            System.out.println("3. Update Salary (custom assignment)");
+
+            int choiceFetch = scanner.nextInt();
+
+            switch (choiceFetch){
+                case 1 -> CRUDOperations.updatePosition();
+                case 2 -> CRUDOperations.updateSalaryByPercentage();
+                case 3 -> CRUDOperations.updateSalaryCustom();
+                case 4 -> quitUpdateToMain = true;
+                default -> System.out.println("Wrong selection. Make sure you select an option from the menu");
+            }
+        }
 
     }
 
     public static void processDeleteEmployee(){
+
+        System.out.println("=====Delete Employee Menu=====");
+
+        System.out.println("Employee Id");
+        int empId = scanner.nextInt();
+
+        //verify that the employee exists first
+
+        //If employee exists....
+
+
 
     }
 

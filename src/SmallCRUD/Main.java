@@ -12,8 +12,6 @@ public class Main {
         boolean quitProgram = false;
         int choice1;
 
-
-
         while(!quitProgram){
 
             Menu();
@@ -28,14 +26,7 @@ public class Main {
                 case 5 -> quitProgram = true;
                 default -> System.out.println("Wrong selection. Make sure you select an option from the menu");
             }
-
-
-
         }
-
-
-
-
     }
 
 
@@ -55,6 +46,9 @@ public class Main {
 
         System.out.println("New Employee Id");
         int empId = scanner.nextInt();
+
+        //if the user is in the database, exit menu
+        //Otherwise, keep asking for data
 
         System.out.println("New Employee Name");
         String empName = scanner.next();
@@ -100,13 +94,24 @@ public class Main {
 
             switch (choiceFetch){
                 case 1 -> CRUDOperations.readAll();
-                case 2 -> CRUDOperations.readOne();
+                case 2 -> readOne();
                 case 3 -> quitFetchToMain = true;
                 default -> System.out.println("Wrong selection. Make sure you select an option from the menu");
             }
         }
 
     }
+
+    public static void readOne(){
+
+        System.out.println("Type the id of the employee");
+        int idToSearch = scanner.nextInt();
+
+
+
+    }
+
+
 
     public static void processUpdateEmployee(){
 

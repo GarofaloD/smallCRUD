@@ -12,7 +12,38 @@ public class DBConnections {
 
             ResultSet resultSet = statement.executeQuery("select * from Employee3");
 
+
+
             return resultSet;
+
+    }
+
+    public static ResultSet fetchOneFromDB(int id) throws SQLException {
+
+        databaseConnection();
+
+        PreparedStatement preparedStatement = databaseConnection().prepareStatement("select * from Employee3 where id = ?");
+        preparedStatement.setInt(1, id);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        return resultSet;
+    }
+
+    public static void insertOnDB(int id, String name, int age, int salary, String designation) throws SQLException {
+
+        databaseConnection();
+
+        PreparedStatement preparedStatement = databaseConnection().prepareStatement("insert into Employee3 values (?,?,?,?,?)"); //? are placeholders for the values
+
+        preparedStatement.setInt(1, id);
+        preparedStatement.setString(2, name);
+        preparedStatement.setInt(3, age);
+        preparedStatement.setInt(4, salary);
+        preparedStatement.setString(5, designation);
+
+        preparedStatement.execute();
+
 
     }
 
@@ -21,9 +52,8 @@ public class DBConnections {
 
 
 
-
-
     public void updateOnDB(){
+
 
     }
 

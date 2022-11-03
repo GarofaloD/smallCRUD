@@ -78,7 +78,7 @@ public class Main {
 
             if(employeeInsertChoice.equalsIgnoreCase("y")){
                 CRUDOperations.insert(empId, empName, empAge, empSalary, empDesignation);
-                System.out.println("Employee Created");
+                System.out.println("Employee Created!");
             } else {
                 System.out.println("Closing feature");
             }

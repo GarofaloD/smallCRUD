@@ -3,7 +3,6 @@ package SmallCRUD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class CRUDOperations {
@@ -44,7 +43,7 @@ public class CRUDOperations {
 
 
 
-    public static void insert(int employeeId, String employeeName, int employeeAge, int employeeSalary, String employeeDesignation ){
+    public void insert(int employeeId, String employeeName, int employeeAge, int employeeSalary, String employeeDesignation ){
 
         try {
 
@@ -58,15 +57,17 @@ public class CRUDOperations {
 
     }
 
-    public static void updatePosition(){
+    public void updateEmployeePosition(String position){
+
+
 
     }
 
-    public static void updateSalaryByPercentage(){
+    public void updateSalaryByPercentage(){
 
     }
 
-    public static void updateSalaryCustom(){
+    public void updateSalaryCustom(){
 
     }
 

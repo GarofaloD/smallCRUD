@@ -77,7 +77,7 @@ public class Main {
             String employeeInsertChoice = scanner.next();
 
             if(employeeInsertChoice.equalsIgnoreCase("y")){
-                CRUDOperations.insert(empId, empName, empAge, empSalary, empDesignation);
+                crudOperations.insert(empId, empName, empAge, empSalary, empDesignation);
                 System.out.println("Employee Created!");
             } else {
                 System.out.println("Closing feature");
@@ -131,8 +131,6 @@ public class Main {
 
     }
 
-
-
     public static void processUpdateEmployee(){
 
         boolean quitUpdateToMain = false;
@@ -147,15 +145,43 @@ public class Main {
             int choiceFetch = scanner.nextInt();
 
             switch (choiceFetch){
-                case 1 -> CRUDOperations.updatePosition();
-                case 2 -> CRUDOperations.updateSalaryByPercentage();
-                case 3 -> CRUDOperations.updateSalaryCustom();
+                case 1 -> updatePosition();
+                case 2 -> updateSalaryByPercentage();
+                case 3 -> updateSalaryCustom();
                 case 4 -> quitUpdateToMain = true;
                 default -> System.out.println("Wrong selection. Make sure you select an option from the menu");
             }
         }
 
     }
+
+
+    public static void updatePosition(){
+        System.out.println("=====Update Position=====");
+
+        System.out.println("Employee Id");
+        int empId = scanner.nextInt();
+
+        ArrayList<Employee> employeesReturned = crudOperations.getOneFromDB(empId);
+
+        if(employeesReturned.isEmpty()){
+            System.out.println("Employee is not in the database");
+        } else {
+            System.out.println("Insert the new Designation (Clerk, Developer, tester, Manager )");
+            String newPosition = scanner.next();
+
+            crudOperations.updateEmployeePosition(newPosition);
+        }
+    }
+
+    public static void updateSalaryByPercentage(){
+
+    }
+
+    public static void updateSalaryCustom(){
+
+    }
+
 
     public static void processDeleteEmployee(){
 

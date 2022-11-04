@@ -45,7 +45,6 @@ public class DBConnections {
         preparedStatement.execute();
     }
 
-
     public static void updatePositionOnDB(int empId, String newPosition) throws SQLException {
 
         databaseConnection();
@@ -78,10 +77,7 @@ public class DBConnections {
         PreparedStatement preparedStatement = databaseConnection().prepareStatement("delete from Employee3 where id = ?");
         preparedStatement.setInt(1, empId);
 
-
         preparedStatement.execute();
-
-
     }
 
 

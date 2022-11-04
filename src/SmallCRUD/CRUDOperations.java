@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CRUDOperations {
 
-    public ArrayList<Employee> getAllFromDB() {
+    public ArrayList<Employee> getAllEmployees() {
 
         ArrayList<Employee> employeeArrayList = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class CRUDOperations {
         return employeeArrayList;
     }
 
-    public ArrayList<Employee> getOneFromDB(int id){
+    public ArrayList<Employee> getOneEmployee(int id){
 
         ArrayList<Employee> employeeArrayList = new ArrayList<>();
 
@@ -41,9 +41,7 @@ public class CRUDOperations {
         return employeeArrayList;
     }
 
-
-
-    public void insert(int employeeId, String employeeName, int employeeAge, int employeeSalary, String employeeDesignation ){
+    public void insertEmployee(int employeeId, String employeeName, int employeeAge, int employeeSalary, String employeeDesignation ){
 
         try {
 
@@ -71,7 +69,7 @@ public class CRUDOperations {
 
     }
 
-    public void updateSalaryByPercentage(int id, int percentageToIncrease){
+    public void updateEmployeeSalaryByPercentage(int id, int percentageToIncrease){
 
         float salary = 0;
         float newSalary = 0;
@@ -97,7 +95,7 @@ public class CRUDOperations {
     }
 
 
-    public void delete(int id){
+    public void deleteEmployee(int id){
 
         try {
 

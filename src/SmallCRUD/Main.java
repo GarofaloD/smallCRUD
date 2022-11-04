@@ -17,7 +17,7 @@ public class Main {
 
         while(!quitProgram){
 
-            Menu();
+            MainMenu();
 
             choice1 = scanner.nextInt();
 
@@ -33,7 +33,9 @@ public class Main {
     }
 
 
-    public static void Menu(){
+
+    //Menus
+    public static void MainMenu(){
         System.out.println("======CRUD PROGRAM=========");
         System.out.println("select your option:");
         System.out.println("1. Insert Employee");
@@ -41,51 +43,6 @@ public class Main {
         System.out.println("3. Update Employee");
         System.out.println("4. Delete employee");
         System.out.println("5. Exit");
-    }
-
-    public static void processInsertEmployee(){
-
-        System.out.println("=====Insert Employee Menu=====");
-
-        System.out.println("New Employee Id");
-        int empId = scanner.nextInt();
-
-        ArrayList<Employee> employeesReturned = crudOperations.getOneFromDB(empId);
-
-        if(!employeesReturned.isEmpty()){
-            System.out.println("Employee is already in the database");
-        } else {
-            System.out.println("New Employee Name");
-            String empName = scanner.next();
-
-            System.out.println("New Employee Age");
-            int empAge = scanner.nextInt();
-
-            System.out.println("New Employee Salary");
-            int empSalary = scanner.nextInt();
-
-            System.out.println("New Employee Designation");
-            String empDesignation = scanner.next();
-
-            System.out.println("Employee information:");
-            System.out.println("Employee Id: " + empId);
-            System.out.println("Employee Name: " + empName);
-            System.out.println("Employee Age: " + empAge);
-            System.out.println("Employee Salary: " + empSalary);
-            System.out.println("Employee Designation: " + empDesignation);
-            System.out.println("Are you sure you want to add the employee? (Y/N)");
-            String employeeInsertChoice = scanner.next();
-
-            if(employeeInsertChoice.equalsIgnoreCase("y")){
-                crudOperations.insert(empId, empName, empAge, empSalary, empDesignation);
-                System.out.println("Employee Created!");
-            } else {
-                System.out.println("Closing feature");
-            }
-        }
-
-
-
     }
 
     public static void menuFetchEmployees(){
@@ -97,7 +54,7 @@ public class Main {
             System.out.println("select your option:");
             System.out.println("1. Show all Employees");
             System.out.println("2. Search employee by employee ID");
-            System.out.println("4. Exit to main menu");
+            System.out.println("3. Exit to main menu");
 
             int choiceFetch = scanner.nextInt();
 
@@ -108,29 +65,6 @@ public class Main {
                 default -> System.out.println("Wrong selection. Make sure you select an option from the menu");
             }
         }
-
-    }
-
-    public static void readOne(){
-
-        System.out.println("Type the id of the employee");
-        int idToSearch = scanner.nextInt();
-
-        ArrayList<Employee> employeesReturned = crudOperations.getOneFromDB(idToSearch);
-
-        printGet(employeesReturned);
-        System.out.println("Data Fetched");
-
-    }
-
-    public static void readAll(){
-
-        ArrayList<Employee> employeesReturned = crudOperations.getAllFromDB();
-
-        printGet(employeesReturned);
-
-        System.out.println("Data Fetched");
-
 
     }
 
@@ -157,13 +91,85 @@ public class Main {
 
     }
 
+
+
+
+    //Operations
+    public static void readOne(){
+
+        System.out.println("Type the id of the employee");
+        int idToSearch = scanner.nextInt();
+
+        ArrayList<Employee> employeesReturned = crudOperations.getOneEmployee(idToSearch);
+
+        printGet(employeesReturned);
+        System.out.println("Data Fetched");
+
+    }
+
+    public static void readAll(){
+
+        ArrayList<Employee> employeesReturned = crudOperations.getAllEmployees();
+
+        printGet(employeesReturned);
+
+        System.out.println("Data Fetched");
+
+
+    }
+
+    public static void processInsertEmployee(){
+
+        System.out.println("=====Insert Employee Menu=====");
+
+        System.out.println("New Employee Id");
+        int empId = scanner.nextInt();
+
+        ArrayList<Employee> employeesReturned = crudOperations.getOneEmployee(empId);
+
+        if(!employeesReturned.isEmpty()){
+            System.out.println("Employee is already in the database");
+        } else {
+            System.out.println("New Employee Name");
+            String empName = scanner.next();
+
+            System.out.println("New Employee Age");
+            int empAge = scanner.nextInt();
+
+            System.out.println("New Employee Salary");
+            int empSalary = scanner.nextInt();
+
+            System.out.println("New Employee Designation");
+            String empDesignation = scanner.next();
+
+            System.out.println("Employee information:");
+            System.out.println("Employee Id: " + empId);
+            System.out.println("Employee Name: " + empName);
+            System.out.println("Employee Age: " + empAge);
+            System.out.println("Employee Salary: " + empSalary);
+            System.out.println("Employee Designation: " + empDesignation);
+            System.out.println("Are you sure you want to add the employee? (Y/N)");
+            String employeeInsertChoice = scanner.next();
+
+            if(employeeInsertChoice.equalsIgnoreCase("y")){
+                crudOperations.insertEmployee(empId, empName, empAge, empSalary, empDesignation);
+                System.out.println("Employee Created!");
+            } else {
+                System.out.println("Closing feature");
+            }
+        }
+
+
+
+    }
+
     public static void updatePosition(){
         System.out.println("=====Update Position=====");
 
         System.out.println("Employee Id");
         int empId = scanner.nextInt();
 
-        ArrayList<Employee> employeesReturned = crudOperations.getOneFromDB(empId);
+        ArrayList<Employee> employeesReturned = crudOperations.getOneEmployee(empId);
 
         if(employeesReturned.isEmpty()){
             System.out.println("Employee is not in the database");
@@ -181,7 +187,7 @@ public class Main {
         System.out.println("Employee Id");
         int empId = scanner.nextInt();
 
-        ArrayList<Employee> employeesReturned = crudOperations.getOneFromDB(empId);
+        ArrayList<Employee> employeesReturned = crudOperations.getOneEmployee(empId);
 
         if(employeesReturned.isEmpty()){
             System.out.println("Employee is not in the database");
@@ -189,11 +195,10 @@ public class Main {
             System.out.println("Insert the percentage that you want to increase the salary by (10%,15%,20%)");
             int salaryIncrease = scanner.nextInt();
 
-            crudOperations.updateSalaryByPercentage(empId, salaryIncrease);
+            crudOperations.updateEmployeeSalaryByPercentage(empId, salaryIncrease);
             System.out.println("Salary Updated");
         }
     }
-
 
     public static void processDeleteEmployee(){
 
@@ -202,7 +207,7 @@ public class Main {
         System.out.println("Employee Id");
         int empId = scanner.nextInt();
 
-        ArrayList<Employee> employeesReturned = crudOperations.getOneFromDB(empId);
+        ArrayList<Employee> employeesReturned = crudOperations.getOneEmployee(empId);
 
         if(employeesReturned.isEmpty()){
             System.out.println("Employee is not in the database");
@@ -213,18 +218,13 @@ public class Main {
             String choice = scanner.next();
 
             if (choice.equalsIgnoreCase("y")){
-                crudOperations.delete(empId);
+                crudOperations.deleteEmployee(empId);
                 System.out.println("Employee Deleted");
             } else {
                 System.out.println("Exiting Feature...");
             }
         }
     }
-
-
-
-
-
 
 
 

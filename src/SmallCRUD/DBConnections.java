@@ -58,7 +58,16 @@ public class DBConnections {
         preparedStatement.execute();
     }
 
-    public void updateSalaryByPercentageOnDB(){
+    public static void updateSalaryByPercentageOnDB(int empId, int newSalary) throws SQLException {
+
+        databaseConnection();
+
+        PreparedStatement preparedStatement = databaseConnection().prepareStatement("update Employee3 set salary = ? where id = ?"); //? are placeholders for the values
+
+        preparedStatement.setInt(1, newSalary);
+        preparedStatement.setInt(2, empId);
+
+        preparedStatement.execute();
 
     }
 

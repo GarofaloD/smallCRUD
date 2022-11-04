@@ -71,21 +71,30 @@ public class CRUDOperations {
 
     }
 
-    public void updateSalaryByPercentage(int percentageToIncrease){
+    public void updateSalaryByPercentage(int id, int percentageToIncrease){
 
-//        ArrayList<Employee> employeeArrayList = new ArrayList<>();
-//
-//        try {
-//            ResultSet rs = DBConnections.fetchOneFromDB(id);
-//
-//            processGetFromDB(employeeArrayList, rs);
-//
-//        } catch (Exception e){
-//            System.out.println(e);
-//
-//        }
-//
-//        return employeeArrayList;
+        float salary = 0;
+        float newSalary = 0;
+
+        try {
+            ResultSet rs = DBConnections.fetchOneFromDB(id);
+
+            while (rs.next()){
+                salary = rs.getInt(4);
+            }
+
+            System.out.println(salary);
+            float percentage = percentageToIncrease / 100f;
+            newSalary = salary + (salary * percentage);
+
+            System.out.println(newSalary);
+            DBConnections.updateSalaryByPercentageOnDB(id, (int)newSalary);
+
+        } catch (Exception e){
+            System.out.println(e);
+
+        }
+
 
     }
 

@@ -24,7 +24,7 @@ public class Main {
             switch (choice1){
                 case 1 -> processInsertEmployee();
                 case 2 -> menuFetchEmployees();
-                case 3 -> processUpdateEmployee();
+                case 3 -> menuUpdateEmployee();
                 case 4 -> processDeleteEmployee();
                 case 5 -> quitProgram = true;
                 default -> System.out.println("Wrong selection. Make sure you select an option from the menu");
@@ -131,7 +131,7 @@ public class Main {
 
     }
 
-    public static void processUpdateEmployee(){
+    public static void menuUpdateEmployee(){
 
         boolean quitUpdateToMain = false;
 
@@ -141,7 +141,7 @@ public class Main {
             System.out.println("1. Update Designation");
             System.out.println("2. Update Salary (by percentage)");
             System.out.println("3. Update Salary (custom assignment)");
-            System.out.println("3. Back to Main Menu");
+            System.out.println("4. Back to Main Menu");
 
             int choiceFetch = scanner.nextInt();
 
@@ -186,10 +186,11 @@ public class Main {
         if(employeesReturned.isEmpty()){
             System.out.println("Employee is not in the database");
         } else {
-            System.out.println("Insert the percentage that you want to increase the salary (10%,15%,20%)");
+            System.out.println("Insert the percentage that you want to increase the salary by (10%,15%,20%)");
             int salaryIncrease = scanner.nextInt();
 
-            crudOperations.updateSalaryByPercentage(salaryIncrease);
+            crudOperations.updateSalaryByPercentage(empId, salaryIncrease);
+            System.out.println("Salary Updated");
         }
     }
 

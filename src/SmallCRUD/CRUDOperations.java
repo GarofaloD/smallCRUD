@@ -57,13 +57,35 @@ public class CRUDOperations {
 
     }
 
-    public void updateEmployeePosition(String position){
+    public void updateEmployeePosition(int id, String newPosition){
 
+        try {
+
+            DBConnections.updatePositionOnDB(id, newPosition);
+
+        } catch (Exception e){
+            System.out.println(e);
+
+        }
 
 
     }
 
-    public void updateSalaryByPercentage(){
+    public void updateSalaryByPercentage(int percentageToIncrease){
+
+//        ArrayList<Employee> employeeArrayList = new ArrayList<>();
+//
+//        try {
+//            ResultSet rs = DBConnections.fetchOneFromDB(id);
+//
+//            processGetFromDB(employeeArrayList, rs);
+//
+//        } catch (Exception e){
+//            System.out.println(e);
+//
+//        }
+//
+//        return employeeArrayList;
 
     }
 

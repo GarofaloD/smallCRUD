@@ -38,7 +38,7 @@ public class Main {
         System.out.println("select your option:");
         System.out.println("1. Insert Employee");
         System.out.println("2. Display Employees");
-        System.out.println("3. Raise salaries by 10% for everyone");
+        System.out.println("3. Update Employee");
         System.out.println("4. Delete employee");
         System.out.println("5. Exit");
     }
@@ -141,6 +141,7 @@ public class Main {
             System.out.println("1. Update Designation");
             System.out.println("2. Update Salary (by percentage)");
             System.out.println("3. Update Salary (custom assignment)");
+            System.out.println("3. Back to Main Menu");
 
             int choiceFetch = scanner.nextInt();
 
@@ -170,12 +171,26 @@ public class Main {
             System.out.println("Insert the new Designation (Clerk, Developer, tester, Manager )");
             String newPosition = scanner.next();
 
-            crudOperations.updateEmployeePosition(newPosition);
+            crudOperations.updateEmployeePosition(empId, newPosition);
         }
     }
 
     public static void updateSalaryByPercentage(){
+        System.out.println("=====Update Salary by Percentage=====");
 
+        System.out.println("Employee Id");
+        int empId = scanner.nextInt();
+
+        ArrayList<Employee> employeesReturned = crudOperations.getOneFromDB(empId);
+
+        if(employeesReturned.isEmpty()){
+            System.out.println("Employee is not in the database");
+        } else {
+            System.out.println("Insert the percentage that you want to increase the salary (10%,15%,20%)");
+            int salaryIncrease = scanner.nextInt();
+
+            crudOperations.updateSalaryByPercentage(salaryIncrease);
+        }
     }
 
     public static void updateSalaryCustom(){

@@ -43,17 +43,26 @@ public class DBConnections {
         preparedStatement.setString(5, designation);
 
         preparedStatement.execute();
-
-
     }
 
 
+    public static void updatePositionOnDB(int empId, String newPosition) throws SQLException {
 
+        databaseConnection();
 
+        PreparedStatement preparedStatement = databaseConnection().prepareStatement("update Employee3 set designation = ? where id = ?"); //? are placeholders for the values
 
+        preparedStatement.setString(1, newPosition);
+        preparedStatement.setInt(2, empId);
 
-    public void updateOnDB(){
+        preparedStatement.execute();
+    }
 
+    public void updateSalaryByPercentageOnDB(){
+
+    }
+
+    public void updateSalaryCustomOnDB(){
 
     }
 

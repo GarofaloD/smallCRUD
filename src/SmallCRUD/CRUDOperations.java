@@ -94,15 +94,19 @@ public class CRUDOperations {
             System.out.println(e);
 
         }
-
-
     }
 
-    public void updateSalaryCustom(){
 
-    }
+    public void delete(int id){
 
-    public static void delete(){
+        try {
+
+            DBConnections.deleteFromDB(id);
+
+        } catch (Exception e){
+            System.out.println(e);
+
+        }
 
     }
 

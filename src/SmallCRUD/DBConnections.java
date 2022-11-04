@@ -71,7 +71,16 @@ public class DBConnections {
 
     }
 
-    public void updateSalaryCustomOnDB(){
+    public static void deleteFromDB(int empId) throws SQLException {
+
+        databaseConnection();
+
+        PreparedStatement preparedStatement = databaseConnection().prepareStatement("delete from Employee3 where id = ?");
+        preparedStatement.setInt(1, empId);
+
+
+        preparedStatement.execute();
+
 
     }
 

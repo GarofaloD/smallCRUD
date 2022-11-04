@@ -119,6 +119,7 @@ public class Main {
         ArrayList<Employee> employeesReturned = crudOperations.getOneFromDB(idToSearch);
 
         printGet(employeesReturned);
+        System.out.println("Data Fetched");
 
     }
 
@@ -127,6 +128,8 @@ public class Main {
         ArrayList<Employee> employeesReturned = crudOperations.getAllFromDB();
 
         printGet(employeesReturned);
+
+        System.out.println("Data Fetched");
 
 
     }
@@ -140,22 +143,19 @@ public class Main {
             System.out.println("select your option:");
             System.out.println("1. Update Designation");
             System.out.println("2. Update Salary (by percentage)");
-            System.out.println("3. Update Salary (custom assignment)");
-            System.out.println("4. Back to Main Menu");
+            System.out.println("3. Back to Main Menu");
 
             int choiceFetch = scanner.nextInt();
 
             switch (choiceFetch){
                 case 1 -> updatePosition();
                 case 2 -> updateSalaryByPercentage();
-                case 3 -> updateSalaryCustom();
-                case 4 -> quitUpdateToMain = true;
+                case 3 -> quitUpdateToMain = true;
                 default -> System.out.println("Wrong selection. Make sure you select an option from the menu");
             }
         }
 
     }
-
 
     public static void updatePosition(){
         System.out.println("=====Update Position=====");
@@ -194,10 +194,6 @@ public class Main {
         }
     }
 
-    public static void updateSalaryCustom(){
-
-    }
-
 
     public static void processDeleteEmployee(){
 
@@ -206,12 +202,23 @@ public class Main {
         System.out.println("Employee Id");
         int empId = scanner.nextInt();
 
-        //verify that the employee exists first
+        ArrayList<Employee> employeesReturned = crudOperations.getOneFromDB(empId);
 
-        //If employee exists....
+        if(employeesReturned.isEmpty()){
+            System.out.println("Employee is not in the database");
+        } else {
+            printGet(employeesReturned);
 
+            System.out.println("Are you sure you want to delete the employee? (y/n)");
+            String choice = scanner.next();
 
-
+            if (choice.equalsIgnoreCase("y")){
+                crudOperations.delete(empId);
+                System.out.println("Employee Deleted");
+            } else {
+                System.out.println("Exiting Feature...");
+            }
+        }
     }
 
 
@@ -234,7 +241,6 @@ public class Main {
                         + " :: Name: " + employeeInList.getName()
                         + " :: Designation: " + employeeInList.getDesignation());
             }
-            System.out.println("Data Fetched");
         }
     }
 

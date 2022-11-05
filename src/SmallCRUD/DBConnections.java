@@ -89,7 +89,7 @@ public class DBConnections {
 
         try {
             Class.forName(classForName);
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/javabackend","root","IosDev2021!");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/javabackend","root","root");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (Exception e){

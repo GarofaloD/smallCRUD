@@ -239,6 +239,8 @@ public class Main {
             for (Employee employeeInList: employeeArrayList) {
                 System.out.println("ID: " + employeeInList.getId()
                         + " :: Name: " + employeeInList.getName()
+                        + " :: Age: " + employeeInList.getAge()
+                        + " :: Salary: " + employeeInList.getSalary()
                         + " :: Designation: " + employeeInList.getDesignation());
             }
         }
